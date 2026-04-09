@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System 2026 Dashboard Demo</title>
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./components.css">
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+<style>
+body {
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 380px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.toolbar__spacer {
+  flex: 1;
+}
+
+.content-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.hero p {
+  color: var(--text-dim);
+  max-width: 760px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.grid--kpis {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.grid--split {
+  grid-template-columns: minmax(280px, 360px) 1fr;
+}
+
+.card-pad {
+  padding: 16px;
+}
+
+.kpi {
+  padding: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.kpi__value {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.meta {
+  padding: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.step-rail {
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.step-marker {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.step-marker.is-done {
+  background: var(--success);
+  border-color: var(--success);
+  color: var(--text-on-accent);
+}
+
+.step-marker.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-on-accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.step-line {
+  width: 1px;
+  min-height: 22px;
+  margin-top: 4px;
+  background: var(--border);
+}
+
+.step-line.is-done {
+  background: var(--success);
+}
+
+.step-copy strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+.step-copy span {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.step-detail {
+  border-left: 1px solid var(--border);
+  padding-left: 16px;
+}
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.log-item {
+  padding: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.log-item p {
+  margin-top: 4px;
+  color: var(--text-dim);
+}
+
+.artifact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.artifact code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.note {
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+@media (max-width: 1080px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    max-height: 42vh;
+  }
+
+  .grid--split {
+    grid-template-columns: 1fr;
+  }
+
+  .step-detail {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 16px;
+  }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useMemo, useState } = React;
+
+const dashboardTabs = ["campaigns", "deploy", "activity", "components"];
+const detailTabs = ["overview", "pipeline", "qa", "artifacts"];
+const pipelineSteps = ["intake", "design", "build", "qa", "pr", "stage", "review", "live"];
+
+const stepLabels = {
+  intake: "Intake",
+  design: "Design",
+  build: "Build",
+  qa: "QA",
+  pr: "PR",
+  stage: "Stage",
+  review: "Review",
+  live: "Live",
+};
+
+const campaigns = [
+  {
+    ticketId: "DCD-167",
+    title: "Moores Homepage Refresh",
+    brand: "Moores",
+    status: "qa",
+    owner: "Nicholas Crisafulli",
+    priority: "High",
+    goLive: "2026-04-20",
+    summary: "Mocked dashboard data that showcases the DCD Studio layout, table density, pipeline controls, tabs, toasts, and modal surfaces.",
+    steps: { intake: "done", design: "done", build: "done", qa: "active", pr: "pending", stage: "pending", review: "pending", live: "pending" },
+    qa: { composite: 91.4, fidelity: 96.8, regression: 88.7, failures: 1, pass: true },
+    artifacts: [
+      "preview/_preview-en.html",
+      "dist/css/homepage-refresh.css",
+      "dist/js/homepage-refresh.js",
+      "dist/csv/mo-20260420-content.csv",
+    ],
+    log: [
+      { step: "intake", time: "09:12", status: "done", message: "Ticket validated and page URLs resolved." },
+      { step: "design", time: "09:34", status: "done", message: "Figma frames extracted with tokens and imagery." },
+      { step: "build", time: "10:18", status: "done", message: "Mock bundle generated and preview compiled." },
+      { step: "qa", time: "10:44", status: "active", message: "Visual comparisons running against refreshed mocks." },
+    ],
+  },
+  {
+    ticketId: "DCD-160",
+    title: "MW Linen Shop Landing Page",
+    brand: "MW",
+    status: "live",
+    owner: "George Alexander",
+    priority: "Medium",
+    goLive: "2026-04-03",
+    summary: "A completed example used to keep the live-state, deploy-state, and finished workflow styling visible in the design-system package.",
+    steps: { intake: "done", design: "done", build: "done", qa: "done", pr: "done", stage: "done", review: "done", live: "done" },
+    qa: { composite: 93.9, fidelity: 98.1, regression: 90.4, failures: 0, pass: true },
+    artifacts: [
+      "dist/html/landing-page.html",
+      "dist/css/linen-shop.css",
+      "dist/js/linen-shop.js",
+      "dist/bundle/_preview.html",
+    ],
+    log: [
+      { step: "qa", time: "11:08", status: "done", message: "Final QA passed with zero blockers." },
+      { step: "pr", time: "11:24", status: "done", message: "PR opened and merged with approvals." },
+      { step: "stage", time: "12:02", status: "done", message: "Stakeholder preview approved." },
+      { step: "live", time: "12:30", status: "done", message: "Deployment published to production." },
+    ],
+  },
+  {
+    ticketId: "DCD-122",
+    title: "JAB New Arrivals Hero",
+    brand: "JAB",
+    status: "review",
+    owner: "Brian Young",
+    priority: "High",
+    goLive: "2026-04-15",
+    summary: "A review-ready example with approval-state styling and a right-side detail surface that feels like the main DCD Studio app.",
+    steps: { intake: "done", design: "done", build: "done", qa: "done", pr: "done", stage: "done", review: "active", live: "pending" },
+    qa: { composite: 88.2, fidelity: 94.6, regression: 79.5, failures: 2, pass: true },
+    artifacts: [
+      "preview/hero-review.html",
+      "dist/css/jab-hero.css",
+      "dist/js/jab-hero.js",
+      "dist/csv/jab-hero.csv",
+    ],
+    log: [
+      { step: "pr", time: "14:10", status: "done", message: "PR created and linked to Jira." },
+      { step: "stage", time: "14:42", status: "done", message: "Staging publish completed." },
+      { step: "review", time: "15:00", status: "active", message: "Approval request sent to stakeholders." },
+    ],
+  },
+];
+
+const deploys = [
+  { id: "DEP-204", ticketId: "DCD-160", status: "live", environment: "production", target: "HCL + CS" },
+  { id: "DEP-211", ticketId: "DCD-122", status: "running", environment: "staging", target: "Contentstack" },
+  { id: "DEP-219", ticketId: "DCD-167", status: "failed", environment: "staging", target: "HCL" },
+];
+
+const activity = [
+  { time: "15:08", badge: "qa", campaign: "DCD-167", message: "Composite score updated to 91.4 after image diff rerun." },
+  { time: "14:42", badge: "review", campaign: "DCD-122", message: "Approval request sent to merchandising and brand." },
+  { time: "12:30", badge: "live", campaign: "DCD-160", message: "Production deployment verified on both desktop and mobile." },
+  { time: "11:24", badge: "pr", campaign: "DCD-160", message: "PR merged with generated preview bundle attached." },
+];
+
+function cx(...parts) {
+  return parts.filter(Boolean).join(" ");
+}
+
+function Badge({ status }) {
+  const color =
+    status === "live" ? "var(--success)" :
+    status === "qa" ? "var(--warning)" :
+    status === "running" || status === "review" || status === "pr" ? "var(--accent)" :
+    status === "failed" ? "var(--error)" :
+    "var(--text-dim)";
+  return (
+    <span className="ds-badge" style={{ color }}>
+      <span className="ds-badge__dot"></span>
+      {status}
+    </span>
+  );
+}
+
+function DotProgress({ steps }) {
+  return (
+    <span className="ds-dot-progress">
+      {pipelineSteps.map((step) => {
+        const state = steps[step] || "pending";
+        return (
+          <span
+            key={step}
+            className={cx(
+              "ds-dot-progress__dot",
+              state === "done" && "is-done",
+              state === "active" && "is-active",
+              state === "failed" && "is-error"
+            )}
+          />
+        );
+      })}
+    </span>
+  );
+}
+
+function PipelinePanel({ campaign }) {
+  const [focusedStep, setFocusedStep] = useState("qa");
+  const relevantLog = campaign.log.filter((entry) => entry.step === focusedStep);
+  return (
+    <div className="grid grid--split">
+      <div className="step-list">
+        {pipelineSteps.map((step, index) => {
+          const state = campaign.steps[step] || "pending";
+          return (
+            <div key={step} className="step-row" onClick={() => setFocusedStep(step)}>
+              <div className="step-rail">
+                <span className={cx("step-marker", state === "done" && "is-done", state === "active" && "is-active")}>
+                  {state === "done" ? "✓" : index + 1}
+                </span>
+                {index < pipelineSteps.length - 1 && <span className={cx("step-line", state === "done" && "is-done")}></span>}
+              </div>
+              <div className="step-copy">
+                <strong style={{ color: focusedStep === step ? "var(--text)" : undefined }}>{stepLabels[step]}</strong>
+                <span>{state === "active" ? "In progress" : state === "done" ? "Completed" : "Waiting"}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="step-detail">
+        <div className="ds-label">Focused Step</div>
+        <div className="row" style={{ marginBottom: 12 }}>
+          <strong style={{ fontSize: 16 }}>{stepLabels[focusedStep]}</strong>
+          <Badge status={campaign.steps[focusedStep] === "done" ? "live" : campaign.steps[focusedStep] === "active" ? "running" : "review"} />
+        </div>
+        <p className="note" style={{ marginBottom: 12 }}>
+          This mocked panel preserves the pipeline detail feel from DCD Studio: compact step rail, mono metadata, and contextual action buttons.
+        </p>
+        <div className="row" style={{ marginBottom: 12 }}>
+          <button className="ds-btn ds-btn--secondary">Open Figma</button>
+          <button className="ds-btn ds-btn--secondary">Open Preview</button>
+          <button className="ds-btn ds-btn--ghost">Create PR</button>
+        </div>
+        <div className="log-list">
+          {(relevantLog.length ? relevantLog : campaign.log.slice(-2)).map((entry, index) => (
+            <div key={index} className="log-item">
+              <div className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>{entry.time} · {entry.status}</div>
+              <p>{entry.message}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Modal({ open, title, children, footer, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="ds-modal" role="dialog" aria-modal="true">
+      <div className="ds-modal__dialog ds-modal__dialog--md">
+        <div className="ds-modal__header ds-modal__header--muted">
+          <div className="ds-modal__title">{title}</div>
+          <button className="ds-btn ds-btn--ghost" onClick={onClose}>Close</button>
+        </div>
+        <div className="ds-modal__body">{children}</div>
+        <div className="ds-modal__footer">{footer}</div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [activeTab, setActiveTab] = useState("campaigns");
+  const [detailTab, setDetailTab] = useState("overview");
+  const [selectedId, setSelectedId] = useState(campaigns[0].ticketId);
+  const [modal, setModal] = useState("");
+  const selected = useMemo(() => campaigns.find((item) => item.ticketId === selectedId) || campaigns[0], [selectedId]);
+
+  return (
+    <div className="app">
+      <div className="ds-nav">
+        <span className="ds-nav__title">Design System 2026 · Dashboard Demo</span>
+        <div className="ds-nav__tabs">
+          {dashboardTabs.map((tab) => (
+            <button key={tab} className={cx("ds-tab-btn", activeTab === tab && "is-active")} onClick={() => setActiveTab(tab)}>
+              {tab === "deploy" ? "Deploy" : tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+        <div className="ds-nav__spacer"></div>
+        <span className="ds-status-dot" data-status="ok"><span className="ds-status-dot__dot"></span>API</span>
+        <span className="ds-status-dot" data-status="ok"><span className="ds-status-dot__dot"></span>CLI</span>
+        <span className="ds-status-dot" data-status="warn"><span className="ds-status-dot__dot"></span>MCP</span>
+        <span className="ds-chip">Theme: <span data-theme-label>dark</span></span>
+        <button className="ds-btn ds-btn--secondary" data-theme-toggle>Toggle theme</button>
+        <button className="ds-btn ds-btn--secondary" onClick={() => setModal("create")}>+ New</button>
+      </div>
+      <div className="ds-stat-strip">
+        <span>Mode <b style={{ color: "var(--accent)" }}>mocked</b></span>
+        <span className="ds-stat-strip__separator">&middot;</span>
+        <span>Includes <b style={{ color: "var(--success)" }}>tabs, tables, pipeline, modals, toasts</b></span>
+      </div>
+
+      <div className="main">
+        {activeTab === "campaigns" && (
+          <aside className="sidebar">
+            <div className="toolbar">
+              <span className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>{campaigns.length} campaigns</span>
+              <button className="ds-pill is-active">All</button>
+              <button className="ds-pill">JAB</button>
+              <button className="ds-pill">MW</button>
+              <button className="ds-pill">MO</button>
+              <div className="toolbar__spacer"></div>
+              <input className="ds-input" value="status: all" readOnly />
+            </div>
+            <div className="ds-table-shell">
+              <table className="ds-table">
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>Status</th>
+                    <th>Pipeline</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {campaigns.map((campaign) => (
+                    <tr key={campaign.ticketId} className={cx("ds-table__row", selected.ticketId === campaign.ticketId && "is-selected")} onClick={() => setSelectedId(campaign.ticketId)}>
+                      <td>
+                        <div className="ds-mono" style={{ color: "var(--accent)", fontWeight: 600 }}>{campaign.ticketId}</div>
+                        <div className="ds-text-dim" style={{ fontSize: 11 }}>{campaign.title}</div>
+                      </td>
+                      <td><Badge status={campaign.status} /></td>
+                      <td><DotProgress steps={campaign.steps} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </aside>
+        )}
+
+        <section className="content">
+          <div className="content-scroll">
+            {activeTab === "campaigns" && (
+              <>
+                <div className="hero">
+                  <div>
+                    <div className="row" style={{ marginBottom: 10 }}>
+                      <span className="ds-chip">{selected.brand}</span>
+                      <Badge status={selected.status} />
+                      <span className="ds-chip">{selected.priority}</span>
+                      <span className="ds-chip">Owner: {selected.owner}</span>
+                    </div>
+                    <h1>{selected.ticketId} · {selected.title}</h1>
+                    <p>{selected.summary}</p>
+                  </div>
+                  <div className="row">
+                    <button className="ds-btn ds-btn--primary" onClick={() => setModal("create")}>Clone Mock</button>
+                    <button className="ds-btn ds-btn--secondary" onClick={() => setModal("gate")}>Open QA Gate</button>
+                    <button className="ds-btn ds-btn--ghost">View Log</button>
+                  </div>
+                </div>
+
+                <div className="row" style={{ marginBottom: 16 }}>
+                  {detailTabs.map((tab) => (
+                    <button key={tab} className={cx("ds-tab-btn", detailTab === tab && "is-active")} onClick={() => setDetailTab(tab)}>
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </button>
+                  ))}
+                </div>
+
+                {detailTab === "overview" && (
+                  <div className="grid grid--kpis">
+                    <div className="kpi">
+                      <div className="ds-label">Composite QA</div>
+                      <div className="kpi__value" style={{ color: selected.qa.pass ? "var(--success)" : "var(--error)" }}>{selected.qa.composite}%</div>
+                    </div>
+                    <div className="kpi">
+                      <div className="ds-label">Fidelity</div>
+                      <div className="kpi__value" style={{ color: "var(--accent)" }}>{selected.qa.fidelity}%</div>
+                    </div>
+                    <div className="kpi">
+                      <div className="ds-label">Regression</div>
+                      <div className="kpi__value" style={{ color: "var(--warning)" }}>{selected.qa.regression}%</div>
+                    </div>
+                    <div className="kpi">
+                      <div className="ds-label">Failures</div>
+                      <div className="kpi__value" style={{ color: selected.qa.failures ? "var(--warning)" : "var(--success)" }}>{selected.qa.failures}</div>
+                    </div>
+                    <div className="ds-card card-pad" style={{ gridColumn: "1 / -1" }}>
+                      <div className="meta-grid">
+                        <div className="meta"><div className="ds-label">Go Live</div><div>{selected.goLive}</div></div>
+                        <div className="meta"><div className="ds-label">Current Step</div><div>QA</div></div>
+                        <div className="meta"><div className="ds-label">Automation</div><div>Heartbeat queued next step</div></div>
+                        <div className="meta"><div className="ds-label">Theme</div><div>Token-driven dark/light</div></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {detailTab === "pipeline" && (
+                  <div className="ds-card card-pad">
+                    <PipelinePanel campaign={selected} />
+                  </div>
+                )}
+
+                {detailTab === "qa" && (
+                  <div className="grid grid--split">
+                    <div className="ds-card card-pad">
+                      <div className="ds-label">Quality Gate</div>
+                      <div className="row" style={{ marginBottom: 12 }}>
+                        <strong style={{ fontSize: 16 }}>{selected.qa.pass ? "Pass" : "Needs Review"}</strong>
+                        <Badge status={selected.qa.pass ? "live" : "failed"} />
+                      </div>
+                      <div className="log-list">
+                        <div className="meta"><div className="ds-label">Composite</div><div>{selected.qa.composite}%</div></div>
+                        <div className="meta"><div className="ds-label">Design Fidelity</div><div>{selected.qa.fidelity}%</div></div>
+                        <div className="meta"><div className="ds-label">Regression</div><div>{selected.qa.regression}%</div></div>
+                      </div>
+                    </div>
+                    <div className="ds-card card-pad">
+                      <div className="ds-label">Operator Notes</div>
+                      <div className="log-list">
+                        <div className="log-item"><div className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>CHECK 01</div><p>Preserve compact table density and mono metadata.</p></div>
+                        <div className="log-item"><div className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>CHECK 02</div><p>Show tabs, pills, badges, and right-hand detail panels together.</p></div>
+                        <div className="log-item"><div className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>CHECK 03</div><p>Keep the design-system package framework-agnostic while demonstrating a dashboard layout.</p></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {detailTab === "artifacts" && (
+                  <div className="ds-card card-pad">
+                    <div className="ds-label">Artifacts</div>
+                    <div className="log-list">
+                      {selected.artifacts.map((artifact) => (
+                        <div key={artifact} className="artifact">
+                          <code>{artifact}</code>
+                          <div className="row">
+                            <button className="ds-btn ds-btn--secondary">Open</button>
+                            <button className="ds-btn ds-btn--ghost">Copy Path</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {activeTab === "deploy" && (
+              <>
+                <div className="hero">
+                  <div>
+                    <div className="ds-label">Deploy Surface</div>
+                    <h1>Mocked release workflow</h1>
+                    <p>This preserves the deployment table rhythm, status treatment, and compact operator cards from the DCD Studio dashboard.</p>
+                  </div>
+                  <button className="ds-btn ds-btn--primary" onClick={() => setModal("deploy")}>Advance Deploy</button>
+                </div>
+                <div className="ds-card card-pad">
+                  <div className="ds-table-shell" style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
+                    <table className="ds-table">
+                      <thead>
+                        <tr>
+                          <th>Deploy</th>
+                          <th>Status</th>
+                          <th>Environment</th>
+                          <th>Target</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {deploys.map((deploy) => (
+                          <tr key={deploy.id} className="ds-table__row">
+                            <td><span className="ds-mono" style={{ color: "var(--accent)", fontWeight: 600 }}>{deploy.id}</span> · {deploy.ticketId}</td>
+                            <td><Badge status={deploy.status} /></td>
+                            <td>{deploy.environment}</td>
+                            <td>{deploy.target}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeTab === "activity" && (
+              <>
+                <div className="hero">
+                  <div>
+                    <div className="ds-label">Activity Feed</div>
+                    <h1>Mocked operator timeline</h1>
+                    <p>A static stream of pipeline events that shows the same spacing, mono metadata, and semantic badge language as the live dashboard logs tab.</p>
+                  </div>
+                </div>
+                <div className="log-list">
+                  {activity.map((entry, index) => (
+                    <div key={index} className="log-item">
+                      <div className="row">
+                        <span className="ds-chip">{entry.time}</span>
+                        <span className="ds-chip">{entry.campaign}</span>
+                        <Badge status={entry.badge} />
+                      </div>
+                      <p>{entry.message}</p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "components" && (
+              <>
+                <div className="hero">
+                  <div>
+                    <div className="ds-label">Component Lab</div>
+                    <h1>Dashboard surfaces with mocked data</h1>
+                    <p>This page highlights the tabs, modals, table shells, split panels, toast shell, and workflow visuals that make the DCD Studio UI feel strong.</p>
+                  </div>
+                </div>
+                <div className="grid grid--split">
+                  <div className="ds-card ds-card--muted card-pad">
+                    <div className="ds-label">Sidebar Surface</div>
+                    <p className="note" style={{ marginBottom: 12 }}>Muted cards work well for navigation, grouped controls, and ambient metadata.</p>
+                    <div className="log-list">
+                      <div className="meta"><div className="ds-label">Selection</div><div>DCD-167</div></div>
+                      <div className="meta"><div className="ds-label">Queue</div><div>2 pending actions</div></div>
+                      <div className="meta"><div className="ds-label">Environment</div><div>Staging</div></div>
+                    </div>
+                  </div>
+                  <div className="ds-card card-pad">
+                    <div className="ds-label">Feedback Surface</div>
+                    <div className="ds-toast" style={{ position: "static", marginTop: 8 }}>
+                      <div className="ds-toast__row">
+                        <div>
+                          <div className="ds-toast__title">Mocked dashboard ready</div>
+                          <div className="ds-toast__message">The system package now includes a full dashboard-feel demo page with mocked data.</div>
+                        </div>
+                        <button className="ds-btn ds-btn--ghost">Dismiss</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+      </div>
+
+      <Modal
+        open={modal === "create"}
+        title="Create Mock Campaign"
+        onClose={() => setModal("")}
+        footer={
+          <>
+            <span className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>Mock only · no APIs called</span>
+            <div className="row">
+              <button className="ds-btn ds-btn--ghost" onClick={() => setModal("")}>Cancel</button>
+              <button className="ds-btn ds-btn--primary" onClick={() => setModal("")}>Create Mock</button>
+            </div>
+          </>
+        }
+      >
+        <div style={{ display: "grid", gap: 12 }}>
+          <div>
+            <label className="ds-label" htmlFor="ticket-id">Ticket ID</label>
+            <input id="ticket-id" className="ds-input" defaultValue="DCD-199" />
+          </div>
+          <div>
+            <label className="ds-label" htmlFor="brand">Brand</label>
+            <select id="brand" className="ds-select" defaultValue="jab">
+              <option value="jab">JAB</option>
+              <option value="mw">MW</option>
+              <option value="moores">Moores</option>
+            </select>
+          </div>
+          <div>
+            <label className="ds-label" htmlFor="summary">Summary</label>
+            <textarea id="summary" className="ds-textarea" rows="4" defaultValue="Mocked intake flow for the dashboard demo page."></textarea>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        open={modal === "gate"}
+        title="Pipeline Gate"
+        onClose={() => setModal("")}
+        footer={
+          <>
+            <span className="ds-mono ds-text-warning" style={{ fontSize: 10 }}>Waiting for manual approval</span>
+            <div className="row">
+              <button className="ds-btn ds-btn--ghost" onClick={() => setModal("")}>Close</button>
+              <button className="ds-btn ds-btn--secondary" onClick={() => setModal("")}>Force Advance</button>
+            </div>
+          </>
+        }
+      >
+        <div className="log-list">
+          <div className="log-item"><strong>Figma linked</strong><p>Reference frames are present and accessible.</p></div>
+          <div className="log-item"><strong>QA score</strong><p>Composite is above threshold, but one mobile screenshot still needs review.</p></div>
+          <div className="log-item"><strong>Stakeholder approval</strong><p>Pending response from merchandising.</p></div>
+        </div>
+      </Modal>
+
+      <Modal
+        open={modal === "deploy"}
+        title="Advance Deploy"
+        onClose={() => setModal("")}
+        footer={
+          <>
+            <span className="ds-mono ds-text-dim" style={{ fontSize: 10 }}>Mock confirmation</span>
+            <div className="row">
+              <button className="ds-btn ds-btn--ghost" onClick={() => setModal("")}>Cancel</button>
+              <button className="ds-btn ds-btn--primary" onClick={() => setModal("")}>Advance</button>
+            </div>
+          </>
+        }
+      >
+        <div className="meta-grid">
+          <div className="meta"><div className="ds-label">Deploy ID</div><div className="ds-mono">DEP-211</div></div>
+          <div className="meta"><div className="ds-label">Environment</div><div>staging</div></div>
+          <div className="meta"><div className="ds-label">Next Stage</div><div>publish</div></div>
+          <div className="meta"><div className="ds-label">Target</div><div>contentstack</div></div>
+        </div>
+      </Modal>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+<script src="./theme.js"></script>
+</body>
+</html>

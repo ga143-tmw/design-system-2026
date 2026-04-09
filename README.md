@@ -6,6 +6,7 @@ Standalone package of the DCD-style design system, saved at `~/workspace/design-
 
 - `index.html`: simple landing page
 - `kitchen-sink.html`: full visual reference for the system
+- `dashboard-demo.html`: mocked DCD Studio dashboard demo with tabs, tables, pipeline, modals, and toasts
 - `tokens.css`: theme tokens, reset, base typography, motion
 - `components.css`: reusable UI classes
 - `theme.js`: dark/light toggle helper
@@ -24,8 +25,9 @@ Standalone package of the DCD-style design system, saved at `~/workspace/design-
 ## How To Use
 
 1. Open `index.html` or `kitchen-sink.html` in a browser.
-2. Import `tokens.css` and `components.css` into another project.
-3. Reuse the documented classes and patterns.
+2. Open `dashboard-demo.html` for a mocked DCD Studio app-style reference.
+3. Import `tokens.css` and `components.css` into another project.
+4. Reuse the documented classes and patterns.
 
 ## Notes
 
