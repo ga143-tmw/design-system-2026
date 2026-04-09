@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System 2026</title>
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./components.css">
+<style>
+body {
+  padding: 40px;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 24px;
+}
+
+.hero h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: var(--text-dim);
+  margin-bottom: 16px;
+  max-width: 680px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.list {
+  margin-top: 20px;
+  padding-left: 20px;
+  color: var(--text-dim);
+}
+
+.list li + li {
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="ds-card hero">
+      <div class="ds-label">Standalone Package</div>
+      <h1>Design System 2026</h1>
+      <p>Reusable DCD-style tokens, components, and a kitchen-sink example set packaged at the root of your workspace for reuse in other projects.</p>
+      <div class="links">
+        <a class="ds-btn ds-btn--primary" href="./kitchen-sink.html">Open Kitchen Sink</a>
+        <a class="ds-btn ds-btn--secondary" href="./README.md">Open README</a>
+      </div>
+      <ul class="list">
+        <li>`tokens.css`: theme tokens and base rules</li>
+        <li>`components.css`: reusable component classes</li>
+        <li>`kitchen-sink.html`: live visual reference</li>
+        <li>`theme.js`: dark/light theme toggle helper</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

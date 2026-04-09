@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System 2026 Kitchen Sink</title>
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./components.css">
+<style>
+body {
+  padding: 32px;
+}
+
+.catalog {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.catalog-header__spacer {
+  flex: 1;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.catalog-card {
+  padding: 16px;
+}
+
+.catalog-card h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.catalog-card p {
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.token {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.token__swatch {
+  width: 100%;
+  height: 32px;
+  margin-bottom: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.panel-demo {
+  padding: 16px;
+}
+
+.split-demo {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 16px;
+}
+
+.mini-table td:last-child,
+.mini-table th:last-child {
+  text-align: right;
+}
+
+.stepper-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stepper-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.stepper-marker {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.stepper-marker.is-done {
+  background: var(--success);
+  border-color: var(--success);
+  color: var(--text-on-accent);
+}
+
+.stepper-marker.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-on-accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.stepper-copy strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+}
+
+.stepper-copy span {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div class="catalog">
+    <div class="catalog-header">
+      <div>
+        <div class="ds-label">Design System 2026</div>
+        <h1 style="font-size: 22px; margin-bottom: 4px;">Kitchen sink</h1>
+        <p class="ds-text-dim">Standalone reference page for the extracted DCD-style tokens, controls, panels, and workflow patterns.</p>
+      </div>
+      <div class="catalog-header__spacer"></div>
+      <span class="ds-chip">Theme: <span data-theme-label>dark</span></span>
+      <button class="ds-btn ds-btn--secondary" data-theme-toggle>Toggle theme</button>
+    </div>
+
+    <div class="catalog-grid">
+      <section class="ds-card catalog-card">
+        <h2>Color Tokens</h2>
+        <div class="token-grid">
+          <div class="token">
+            <div class="token__swatch" style="background: var(--bg);"></div>
+            <div class="ds-label">Background</div>
+            <code>--bg</code>
+          </div>
+          <div class="token">
+            <div class="token__swatch" style="background: var(--surface);"></div>
+            <div class="ds-label">Surface</div>
+            <code>--surface</code>
+          </div>
+          <div class="token">
+            <div class="token__swatch" style="background: var(--accent);"></div>
+            <div class="ds-label">Accent</div>
+            <code>--accent</code>
+          </div>
+          <div class="token">
+            <div class="token__swatch" style="background: var(--success);"></div>
+            <div class="ds-label">Success</div>
+            <code>--success</code>
+          </div>
+          <div class="token">
+            <div class="token__swatch" style="background: var(--warning);"></div>
+            <div class="ds-label">Warning</div>
+            <code>--warning</code>
+          </div>
+          <div class="token">
+            <div class="token__swatch" style="background: var(--error);"></div>
+            <div class="ds-label">Error</div>
+            <code>--error</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-card catalog-card">
+        <h2>Buttons And Inputs</h2>
+        <div class="stack">
+          <div class="row">
+            <button class="ds-btn ds-btn--primary">Primary</button>
+            <button class="ds-btn ds-btn--secondary">Secondary</button>
+            <button class="ds-btn ds-btn--ghost">Ghost</button>
+          </div>
+          <div>
+            <label class="ds-label" for="sample-input">Ticket ID</label>
+            <input id="sample-input" class="ds-input" placeholder="DCD-123">
+          </div>
+          <div>
+            <label class="ds-label" for="sample-select">Environment</label>
+            <select id="sample-select" class="ds-select">
+              <option>Development</option>
+              <option>Staging</option>
+              <option>Production</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-card catalog-card">
+        <h2>Status And Metadata</h2>
+        <div class="stack">
+          <div class="row">
+            <span class="ds-status-dot" data-status="ok"><span class="ds-status-dot__dot"></span>API</span>
+            <span class="ds-status-dot" data-status="warn"><span class="ds-status-dot__dot"></span>CLI</span>
+            <span class="ds-status-dot" data-status="offline"><span class="ds-status-dot__dot"></span>MCP</span>
+          </div>
+          <div class="row">
+            <span class="ds-chip">JAB</span>
+            <span class="ds-chip">LIVE</span>
+            <span class="ds-chip">QA FAIL</span>
+          </div>
+          <div class="ds-stat-strip">
+            <span>Total <b style="color: var(--text);">42</b></span>
+            <span class="ds-stat-strip__separator">&middot;</span>
+            <span>Active <b style="color: var(--warning);">6</b></span>
+            <span class="ds-stat-strip__separator">&middot;</span>
+            <span>Done <b style="color: var(--success);">36</b></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="catalog-grid">
+      <section class="ds-card catalog-card">
+        <h2>Navigation</h2>
+        <div class="ds-nav" style="border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <span class="ds-nav__title">DCD Studio</span>
+          <div class="ds-nav__tabs">
+            <button class="ds-tab-btn is-active">Campaigns</button>
+            <button class="ds-tab-btn">Deploy</button>
+            <button class="ds-tab-btn">Logs</button>
+          </div>
+          <div class="ds-nav__spacer"></div>
+          <button class="ds-btn ds-btn--ghost ds-icon-btn">☀</button>
+        </div>
+      </section>
+
+      <section class="ds-card catalog-card">
+        <h2>Table Shell</h2>
+        <div class="ds-table-shell" style="border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;">
+          <div class="ds-table-toolbar">
+            <span class="ds-mono ds-text-dim" style="font-size: 10px;">3 campaigns</span>
+            <button class="ds-pill is-active">All</button>
+            <button class="ds-pill">MW</button>
+            <button class="ds-pill">MO</button>
+          </div>
+          <table class="ds-table mini-table">
+            <thead>
+              <tr>
+                <th>Ticket</th>
+                <th>Status</th>
+                <th>Pipeline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="ds-table__row is-selected">
+                <td><span class="ds-mono" style="font-weight: 600; color: var(--accent);">DCD-160</span></td>
+                <td><span class="ds-badge" style="color: var(--success);"><span class="ds-badge__dot"></span>live</span></td>
+                <td><span class="ds-dot-progress ds-dot-progress--small"><span class="ds-dot-progress__dot is-done"></span><span class="ds-dot-progress__dot is-done"></span><span class="ds-dot-progress__dot is-done"></span><span class="ds-dot-progress__dot is-done"></span></span></td>
+              </tr>
+              <tr class="ds-table__row">
+                <td><span class="ds-mono" style="font-weight: 600; color: var(--accent);">DCD-167</span></td>
+                <td><span class="ds-badge" style="color: var(--warning);"><span class="ds-badge__dot"></span>qa</span></td>
+                <td><span class="ds-dot-progress ds-dot-progress--small"><span class="ds-dot-progress__dot is-done"></span><span class="ds-dot-progress__dot is-active"></span><span class="ds-dot-progress__dot"></span><span class="ds-dot-progress__dot"></span></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ds-card catalog-card">
+        <h2>Progress Patterns</h2>
+        <div class="stack">
+          <div class="row">
+            <span class="ds-dot-progress">
+              <span class="ds-dot-progress__dot is-done"></span>
+              <span class="ds-dot-progress__dot is-done"></span>
+              <span class="ds-dot-progress__dot is-active"></span>
+              <span class="ds-dot-progress__dot"></span>
+              <span class="ds-dot-progress__dot"></span>
+            </span>
+          </div>
+          <div class="stepper-demo">
+            <div class="stepper-item">
+              <span class="stepper-marker is-done">1</span>
+              <div class="stepper-copy"><strong>Intake</strong><span>Ticket and requirements confirmed.</span></div>
+            </div>
+            <div class="stepper-item">
+              <span class="stepper-marker is-active">2</span>
+              <div class="stepper-copy"><strong>Build</strong><span>Artifacts are being generated.</span></div>
+            </div>
+            <div class="stepper-item">
+              <span class="stepper-marker">3</span>
+              <div class="stepper-copy"><strong>QA</strong><span>Awaiting automated comparison.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="ds-card catalog-card panel-demo" style="margin-bottom: 24px;">
+      <h2>Panels, Split Views, And Toasts</h2>
+      <div class="split-demo">
+        <div class="ds-card ds-card--muted panel-demo">
+          <div class="ds-label">Left Panel</div>
+          <p class="ds-text-dim">Use muted surfaces for navigation, metadata, or sidebars.</p>
+          <button class="ds-btn ds-btn--secondary">Open In Cursor</button>
+        </div>
+        <div class="ds-card panel-demo">
+          <div class="ds-label">Detail Panel</div>
+          <p class="ds-text-dim">Use standard surfaces for focused detail, forms, or logs.</p>
+          <div class="row">
+            <button class="ds-btn ds-btn--primary">Primary Action</button>
+            <button class="ds-btn ds-btn--ghost">Secondary Action</button>
+          </div>
+        </div>
+      </div>
+      <div class="ds-toast" style="position: static; margin-top: 16px;">
+        <div class="ds-toast__row">
+          <div>
+            <div class="ds-toast__title">Campaign created.</div>
+            <div class="ds-toast__message">The heartbeat will queue the next automation step when ready.</div>
+          </div>
+          <button class="ds-btn ds-btn--ghost">Dismiss</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./theme.js"></script>
+</body>
+</html>
