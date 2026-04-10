@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System 2026 Operator Patterns</title>
+<link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./components.css">
+<link rel="stylesheet" href="./operator-2026.css">
+</head>
+<body class="ds26-body">
+  <main class="ds26-page">
+    <header class="ds26-hero">
+      <div>
+        <div class="ds26-label">Design System 2026</div>
+        <h1 class="ds26-hero__title ds26-mono">Operator UI Patterns</h1>
+        <p class="ds26-hero__copy">Recent DCD Studio styles and HTML markup captured as reusable design-system references: floating Dev Tools, wizard modals, deploy entry, and dense operator logs.</p>
+      </div>
+      <div class="ds26-actions ds26-actions--end">
+        <span class="ds26-chip">Theme: <span data-theme-label>dark</span></span>
+        <button class="ds26-btn ds26-btn--secondary ds26-icon-btn" data-theme-toggle aria-label="Toggle light and dark mode"><span data-ds26-theme-icon>&#9728;</span></button>
+      </div>
+    </header>
+
+    <section style="margin-bottom: 40px;">
+      <div class="ds26-label">Header Controls</div>
+      <div class="ds26-card" style="overflow: hidden;">
+        <div class="ds26-controlbar">
+          <div class="ds26-status-cluster">
+            <span class="ds26-status-item"><span class="ds26-dot ds26-dot--success"></span>API</span>
+            <span class="ds26-status-item"><span class="ds26-dot ds26-dot--success"></span>CLI</span>
+            <span class="ds26-status-item"><span class="ds26-dot ds26-dot--success"></span>MCP</span>
+            <span class="ds26-status-item"><span class="ds26-dot ds26-dot--success"></span>JIRA</span>
+          </div>
+          <div class="ds26-actions ds26-actions--end">
+            <button class="ds26-btn ds26-btn--ghost ds26-icon-btn" data-theme-toggle aria-label="Toggle light and dark mode"><span data-ds26-theme-icon>&#9728;</span></button>
+            <button class="ds26-btn ds26-btn--secondary">+ New</button>
+          </div>
+        </div>
+        <div class="ds26-controlbar">
+          <div></div>
+          <div class="ds26-link-row">
+            <a href="#" class="ds26-inline-link ds26-inline-link--accent">Figma ↗</a>
+            <a href="#" class="ds26-inline-link ds26-inline-link--success">All steps done</a>
+            <a href="#" class="ds26-inline-link">X</a>
+          </div>
+        </div>
+        <div class="ds26-controlbar">
+          <div></div>
+          <div class="ds26-link-row">
+            <a href="#" class="ds26-inline-link ds26-inline-link--accent">DevTools ON</a>
+            <a href="#" class="ds26-inline-link">Open tab</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+      <div class="ds26-label">Preview Overlay</div>
+      <div class="ds26-devtools ds26-card" data-ds26-tabs>
+        <div class="ds26-devtools__header">
+          <div class="ds26-devtools__title">DCD Dev Tools</div>
+          <div class="ds26-devtools__meta">MW · shop-lp</div>
+        </div>
+        <div class="ds26-tabs">
+          <button class="ds26-tab" data-ds26-tab="modules">Modules</button>
+          <button class="ds26-tab" data-ds26-tab="files">Files</button>
+          <button class="ds26-tab is-active" data-ds26-tab="inspect">Inspect</button>
+          <button class="ds26-tab" data-ds26-tab="seo">SEO</button>
+          <button class="ds26-tab" data-ds26-tab="config">Config</button>
+        </div>
+        <div class="ds26-tab-panels">
+          <section class="ds26-devtools__body" data-ds26-panel="modules">
+            <div class="ds26-label">Pug Modules (8)</div>
+            <div class="ds26-list">
+              <div class="ds26-list-item">HP01-HERO.pug</div>
+              <div class="ds26-list-item">HP02-FEATURED.pug</div>
+              <div class="ds26-list-item">HP03-BENEFITS.pug</div>
+              <div class="ds26-list-item">HP04-SUITS.pug</div>
+            </div>
+          </section>
+
+          <section class="ds26-devtools__body" data-ds26-panel="files">
+            <div class="ds26-label">Quick Links</div>
+            <div class="ds26-actions">
+              <button class="ds26-btn ds26-btn--secondary">Open in Cursor</button>
+              <button class="ds26-btn ds26-btn--secondary">Open in Finder</button>
+              <button class="ds26-btn ds26-btn--secondary">dist/</button>
+            </div>
+            <div class="ds26-paths">
+              <div class="ds26-path"><span class="ds26-label">src</span>/Users/ga143/workspace/tb-digital-dev/tools/build-system/projects/site/mw/default/mw-20260420-dcd-167-np-refresh/src/</div>
+              <div class="ds26-path"><span class="ds26-label">dist</span>/Users/ga143/workspace/tb-digital-dev/tools/build-system/projects/site/mw/default/mw-20260420-dcd-167-np-refresh/dist/</div>
+            </div>
+          </section>
+
+          <section class="ds26-devtools__body is-active" data-ds26-panel="inspect">
+            <button class="ds26-btn ds26-btn--primary ds26-devtools__hero-btn">Enable Module Outlines</button>
+            <p class="ds26-text-dim" style="margin: 20px 0 0; font-size: 15px;">Highlights all HP modules and article blocks on the page with labeled outlines.</p>
+          </section>
+
+          <section class="ds26-devtools__body" data-ds26-panel="seo">
+            <div class="ds26-label">SEO Audit</div>
+            <div class="ds26-kv">
+              <div class="ds26-kv__row">Title: <span class="ds26-kv__value">(none)</span></div>
+              <div class="ds26-kv__row">Meta desc: <span class="ds26-kv__value">(none)</span></div>
+              <div class="ds26-kv__row">Images without alt: <span class="ds26-kv__value ds26-kv__value--success">0</span></div>
+              <div class="ds26-kv__row">Links without aria-label: <span class="ds26-kv__value ds26-kv__value--warn">23</span></div>
+              <div class="ds26-kv__row">H1 count: <span class="ds26-kv__value">0</span></div>
+              <div class="ds26-kv__row">Total images: <span class="ds26-kv__value">30</span></div>
+            </div>
+          </section>
+
+          <section class="ds26-devtools__body" data-ds26-panel="config">
+            <div class="ds26-label">Job Config</div>
+            <pre class="ds26-code-block">{
+  "jobFolder": "mw-20260403-dcd-160-linen-shop-lp",
+  "brand": "mw",
+  "modules": ["HP_SCRIPTS.pug", "HP_STYLES.pug", "LP01-HERO.pug"],
+  "csvFiles": ["mw-20260403-Config.csv", "mw-20260403-Content.csv"],
+  "jobPath": "/Users/ga143/workspace/tb-digital-dev/tools/build-system/projects/site/mw/default/mw-20260403-dcd-160-linen-shop-lp"
+}</pre>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds26-layout-grid ds26-layout-grid--two" style="margin-bottom: 40px;">
+      <div>
+        <div class="ds26-label">Campaign Wizard</div>
+        <div class="ds26-modal">
+          <div class="ds26-modal__dialog">
+            <div class="ds26-modal__header">
+              <div>
+                <div class="ds26-modal__title">New Campaign</div>
+                <div class="ds26-modal__subtitle ds26-mono">Step 2/4 — Configuration</div>
+              </div>
+              <button class="ds26-btn ds26-btn--ghost">X</button>
+            </div>
+            <div class="ds26-progress-steps">
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar"></div>
+              <div class="ds26-progress-steps__bar"></div>
+            </div>
+            <div class="ds26-modal__body">
+              <div class="ds26-label">Brand</div>
+              <div class="ds26-choice-row" style="margin-bottom: 14px;">
+                <button class="ds26-choice">JAB</button>
+                <button class="ds26-choice">MW</button>
+                <button class="ds26-choice is-active">Moores</button>
+                <button class="ds26-choice">K&amp;G</button>
+              </div>
+
+              <div class="ds26-label">Template</div>
+              <div class="ds26-template-list" style="margin-bottom: 16px;">
+                <div class="ds26-template is-active">
+                  <div class="ds26-template__title">Category Grid</div>
+                  <div class="ds26-template__copy">Carousel of category cards with lifestyle imagery</div>
+                </div>
+                <div class="ds26-template">
+                  <div class="ds26-template__title">Product Grid</div>
+                  <div class="ds26-template__copy">PGP with product cards, filters, sorting</div>
+                </div>
+                <div class="ds26-template">
+                  <div class="ds26-template__title">Hero Banner</div>
+                  <div class="ds26-template__copy">Full-width promotional banner</div>
+                </div>
+              </div>
+
+              <div class="ds26-grid ds26-grid--two">
+                <div>
+                  <div class="ds26-label">Target</div>
+                  <div class="ds26-choice-row">
+                    <button class="ds26-choice">Desktop</button>
+                    <button class="ds26-choice">Mobile</button>
+                    <button class="ds26-choice is-active">Both</button>
+                  </div>
+                </div>
+                <div>
+                  <label class="ds26-label" for="go-live">Go-Live</label>
+                  <input id="go-live" class="ds26-input" value="04/20/2026">
+                </div>
+              </div>
+
+              <div style="margin-top: 16px;">
+                <label class="ds26-label" for="figma-url">Figma URL</label>
+                <input id="figma-url" class="ds26-input" value="https://www.figma.com/design/QVUP..." />
+              </div>
+
+              <div style="margin-top: 16px;">
+                <label class="ds26-label" for="page-urls">Page URLs (one per line)</label>
+                <textarea id="page-urls" class="ds26-textarea">https://www.mooresclothing.ca/en-ca/c/promotions
+https://www.mooresclothing.ca/en-ca/c/non-promo</textarea>
+              </div>
+            </div>
+            <div class="ds26-modal__footer">
+              <button class="ds26-btn ds26-btn--secondary">Back</button>
+              <button class="ds26-btn ds26-btn--primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ds26-label">Acceptance Criteria State</div>
+        <div class="ds26-modal">
+          <div class="ds26-modal__dialog">
+            <div class="ds26-modal__header">
+              <div>
+                <div class="ds26-modal__title">New Campaign</div>
+                <div class="ds26-modal__subtitle ds26-mono">Step 3/4 — Acceptance Criteria</div>
+              </div>
+              <button class="ds26-btn ds26-btn--ghost">X</button>
+            </div>
+            <div class="ds26-progress-steps">
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar"></div>
+            </div>
+            <div class="ds26-modal__body">
+              <div class="ds26-score">
+                <div class="ds26-section-title" style="margin: 0;">Acceptance Criteria</div>
+                <div class="ds26-score__value ds26-score__value--warn">50%</div>
+              </div>
+              <div class="ds26-meter">
+                <div class="ds26-meter__fill" style="width: 50%;"></div>
+              </div>
+
+              <div class="ds26-checklist">
+                <div>
+                  <div class="ds26-checklist__group-title">Design</div>
+                  <label class="ds26-check"><input type="checkbox" checked> <span>Figma design frames linked and accessible <span class="ds26-check__required">*</span></span></label>
+                  <label class="ds26-check"><input type="checkbox" checked> <span>Brand design tokens specified <span class="ds26-check__required">*</span></span></label>
+                  <label class="ds26-check"><input type="checkbox"> <span>Responsive breakpoints defined</span></label>
+                </div>
+                <div>
+                  <div class="ds26-checklist__group-title">Content</div>
+                  <label class="ds26-check"><input type="checkbox" checked> <span>Target page URLs specified <span class="ds26-check__required">*</span></span></label>
+                  <label class="ds26-check"><input type="checkbox" checked> <span>Category data and product SKUs provided <span class="ds26-check__required">*</span></span></label>
+                  <label class="ds26-check"><input type="checkbox"> <span>Marketing copy finalized and approved</span></label>
+                </div>
+                <div>
+                  <div class="ds26-checklist__group-title">Delivery</div>
+                  <label class="ds26-check"><input type="checkbox" checked> <span>Go-live date confirmed <span class="ds26-check__required">*</span></span></label>
+                  <label class="ds26-check"><input type="checkbox"> <span>Evergage/Contentstack config ready</span></label>
+                </div>
+              </div>
+
+              <div class="ds26-alert ds26-alert--danger">Required criteria must be met.</div>
+            </div>
+            <div class="ds26-modal__footer">
+              <button class="ds26-btn ds26-btn--secondary">Back</button>
+              <button class="ds26-btn ds26-btn--primary ds26-btn--warn">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds26-layout-grid ds26-layout-grid--two">
+      <div>
+        <div class="ds26-label">Review State</div>
+        <div class="ds26-modal">
+          <div class="ds26-modal__dialog">
+            <div class="ds26-modal__header">
+              <div>
+                <div class="ds26-modal__title">New Campaign</div>
+                <div class="ds26-modal__subtitle ds26-mono">Step 4/4 — Review &amp; Launch</div>
+              </div>
+              <button class="ds26-btn ds26-btn--ghost">X</button>
+            </div>
+            <div class="ds26-progress-steps">
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+              <div class="ds26-progress-steps__bar is-active"></div>
+            </div>
+            <div class="ds26-modal__body">
+              <div class="ds26-section-title">Summary</div>
+              <div class="ds26-summary-grid">
+                <div><div class="ds26-summary__label">Ticket</div><div class="ds26-summary__value">DCD-161</div></div>
+                <div><div class="ds26-summary__label">Brand</div><div class="ds26-summary__value">Moores</div></div>
+                <div><div class="ds26-summary__label">Template</div><div class="ds26-summary__value">category-grid</div></div>
+                <div><div class="ds26-summary__label">Target</div><div class="ds26-summary__value">both</div></div>
+                <div><div class="ds26-summary__label">Go-Live</div><div class="ds26-summary__value">TBD</div></div>
+                <div><div class="ds26-summary__label">Assignee</div><div class="ds26-summary__value">Nicholas Crisafulli</div></div>
+                <div><div class="ds26-summary__label">AC Score</div><div class="ds26-summary__value">50%</div></div>
+                <div><div class="ds26-summary__label">Figma</div><div class="ds26-summary__value">Linked</div></div>
+              </div>
+              <div class="ds26-alert ds26-alert--success">Ready to launch pipeline.</div>
+            </div>
+            <div class="ds26-modal__footer">
+              <button class="ds26-btn ds26-btn--secondary">Back</button>
+              <button class="ds26-btn ds26-btn--primary">Launch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ds26-label">Dense Operator Logs</div>
+        <div class="ds26-card" style="overflow: hidden;">
+          <div class="ds26-toolbar">
+            <span class="ds26-chip">Total 19</span>
+            <span class="ds26-chip">Active 16</span>
+            <span class="ds26-chip">Done 2</span>
+            <span class="ds26-chip"><span class="ds26-dot ds26-dot--success"></span>Heartbeat on</span>
+            <div class="ds26-toolbar__spacer"></div>
+            <select class="ds26-select-minimal">
+              <option>All campaigns</option>
+            </select>
+            <select class="ds26-select-minimal">
+              <option>All steps</option>
+            </select>
+            <select class="ds26-select-minimal">
+              <option>All statuses</option>
+            </select>
+          </div>
+          <div class="ds26-log">
+            <div class="ds26-log__row">
+              <div class="ds26-log__meta">3:14:29 PM</div>
+              <div><span class="ds26-pill ds26-pill--brand">DCD-122</span></div>
+              <div><span class="ds26-pill ds26-pill--warn">QA</span></div>
+              <div class="ds26-log__message">Visual QA complete. Composite 82.65%, design fidelity 82.02% (module-level).</div>
+            </div>
+            <div class="ds26-log__row">
+              <div class="ds26-log__meta">3:13:58 PM</div>
+              <div><span class="ds26-pill ds26-pill--brand">DCD-167</span></div>
+              <div><span class="ds26-pill ds26-pill--success">Lessons</span></div>
+              <div class="ds26-log__message">Lessons captured in AGENTS-mo.md: csv-config date format, preview symlink, and manual QA note.</div>
+            </div>
+            <div class="ds26-log__row">
+              <div class="ds26-log__meta">3:07:50 PM</div>
+              <div><span class="ds26-pill ds26-pill--brand">DCD-167</span></div>
+              <div><span class="ds26-pill ds26-pill--warn">QA-Validate</span></div>
+              <div class="ds26-log__message">Full-page comparison diff expected from header overlays and missing CDN images in reference capture.</div>
+            </div>
+            <div class="ds26-log__row">
+              <div class="ds26-log__meta">3:04:59 PM</div>
+              <div><span class="ds26-pill ds26-pill--brand">DCD-167</span></div>
+              <div><span class="ds26-pill ds26-pill--success">Build</span></div>
+              <div class="ds26-log__message">Build succeeded. 81 artifacts generated. Advancing to QA.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 40px;">
+      <div class="ds26-label">Deployment Modal</div>
+      <div class="ds26-modal">
+        <div class="ds26-modal__dialog" style="max-width: 720px;">
+          <div class="ds26-modal__header">
+            <div>
+              <div class="ds26-modal__title">New Deployment</div>
+            </div>
+            <button class="ds26-btn ds26-btn--ghost">X</button>
+          </div>
+          <div class="ds26-modal__body">
+            <div class="ds26-grid ds26-grid--two">
+              <div style="grid-column: 1 / -1;">
+                <label class="ds26-label" for="campaign-select">Campaign (Optional)</label>
+                <select id="campaign-select" class="ds26-select">
+                  <option>— None —</option>
+                  <option>DCD-167 — MO HP Test Refresh 4/20 Non Promo</option>
+                </select>
+              </div>
+              <div>
+                <label class="ds26-label" for="deploy-brand">Brand</label>
+                <select id="deploy-brand" class="ds26-select">
+                  <option>—</option>
+                  <option>Moores</option>
+                  <option>MW</option>
+                </select>
+              </div>
+              <div>
+                <label class="ds26-label" for="deploy-env">Environment</label>
+                <select id="deploy-env" class="ds26-select">
+                  <option>Staging</option>
+                  <option>Production</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <div class="ds26-label">Target</div>
+              <div class="ds26-choice-row">
+                <button class="ds26-choice">ContentStack</button>
+                <button class="ds26-choice">HCL Commerce</button>
+                <button class="ds26-choice is-active">Both</button>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <label class="ds26-label" for="job-folder">Job Folder</label>
+              <input id="job-folder" class="ds26-input" value="jab-20260401-dcd-92-sale" />
+            </div>
+
+            <div style="margin-top: 16px;">
+              <label class="ds26-label" for="deploy-title">Title</label>
+              <input id="deploy-title" class="ds26-input" value="Deploy description" />
+            </div>
+          </div>
+          <div class="ds26-modal__footer">
+            <button class="ds26-btn ds26-btn--secondary">Cancel</button>
+            <button class="ds26-btn ds26-btn--primary">Create Deploy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./theme.js"></script>
+  <script src="./operator-patterns.js"></script>
+</body>
+</html>
